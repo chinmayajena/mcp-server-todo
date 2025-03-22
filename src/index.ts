@@ -28,18 +28,29 @@ server.tool(
 );
 
 //Adding tools
+server.tool("get-todo", "Get all your Task", {}, async () => {
+  return {
+    content: [
+      {
+        type: "text",
+        text: "All my tasks",
+      },
+    ],
+  };
+});
+
 server.tool(
-  "get-todo",
-  "Get all your Task",
+  "remove-todo",
+  "remove one of your Task",
   {
-    text: z.string(),
+    id: z.number(),
   },
-  async ({ text }) => {
+  async ({ id }) => {
     return {
       content: [
         {
           type: "text",
-          text: `${text} is added to Todo List`,
+          text: `${id} is removed from the Todo List`,
         },
       ],
     };
